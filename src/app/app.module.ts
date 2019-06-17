@@ -4,7 +4,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -12,8 +11,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    ListPage
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -22,8 +20,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    ListPage
+    HomePage
   ],
   providers: [
     StatusBar,
@@ -31,4 +28,20 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
+
+/*
+  Modulo aqui é uma classe.
+  Tem a definição aqui abaixo de uma classe
+  Essa classe não tem corpo nenhum, então é só abre e fecha aspas
+
+  Quando voc~e quer que uma classe seja importada por outro arquivo
+  você tem que colocar a palavra export
+
+  Porém o mais importante aqui é o decortador
+  que é o @NGModule
+  Decorator é uma anotação que vai ter configurações para alterar
+  a minha classe.
+  Oque faz essa classe ser um modulo é o meu @NgModule
+  
+*/
 export class AppModule {}

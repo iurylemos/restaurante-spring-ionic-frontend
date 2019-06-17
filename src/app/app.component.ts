@@ -4,12 +4,16 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+  /*
+  Ele aqui é o controlador da pagina app.html
+  toda pagina HTML que é a view ela tem que ter um controlador
+  e esse aqui é o controlador
+  */
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
@@ -21,8 +25,7 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'Home', component: HomePage }
     ];
 
   }
