@@ -9,5 +9,27 @@
 </ion-header>
 
 <ion-content padding>
-  <p>Página de Categorias</p>
+    <ion-list>
+        <button ion-item *ngFor="let item of items">
+          <ion-thumbnail item-start>
+            <img src="{{bucketUrl}}/cat{{item.id}}.jpg">
+          </ion-thumbnail>
+          <h2>{{ item.nome }}</h2>
+        </button>
+      </ion-list>
 </ion-content>
+
+<!-- Coloquei como button o ion-item, para eu clicar em qualquer
+parte e ele ser um botão
+Dentro lá do botão, para o meu template aqui ler o que está no controlador
+Preciso utilizar a diretiva ngfor, pois ela é capaz de ler uma coleção
+do controlador e repetir o elemento onde ela está tanta vezes for o elemento da coleção 
+Ou seja ele vai pecorrer a lista de items e para cada elemento dessa lista
+dou o apelido de ITEM
+Se o items é do tipo CategoriaDTO, cada item vai ser do tipo CategoriaDTO
+
+Troco o texto no h2 por um texto dinamico extraido do meu item
+Para fazer isso tenho que colocar o {{ }} isso o Angular chamado
+de INTERPOLAÇÃO, ou seja eu vou interpolar o dado do meu HTML, com um dado
+que veio do meu controlador que no caso vai ser o item.nome, ou seja nome da
+minha categoria -->

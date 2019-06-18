@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CategoriaServico } from '../../services/domain/categoria.servico';
+import { CategoriaDTO } from '../../models/categoria.dto';
+import { API_CONFIG } from '../../config/api.config';
 
 /**
  * Generated class for the CategoriasPage page.
@@ -21,7 +23,13 @@ export class CategoriasPage {
      public categoriaServico: CategoriaServico) {
   }
 
-  //Metodo que eu criei do CateogriaServico
+
+  //Bucket de imagens
+  bucketUrl: string = API_CONFIG.bucketBaseUrl;
+
+  //Essa vai ser a lista que vai ser exposta no controlador
+  //Para o meu template ler os dados
+  items: CategoriaDTO[];
 
   //Quando a pagina terminar de ser carregada vai ser executada o que tiver aqui dentro
   //No angular para você se increver uma chamada assicrona
@@ -40,7 +48,11 @@ export class CategoriasPage {
   ionViewDidLoad() {
     this.categoriaServico.findAll()
     .subscribe(response => {
-      console.log(response);
+      //Não vou mais imprimir no console, eu vou guardar isso em uma variavel
+      //Da minha classe para que o meu TemplateHTML possa ler.
+      //Vou chama-lo de Itens do tipo categoriaDTO[]; 
+      //[] = coleção
+      this.items = response;
     },
     error => {
       console.log(error);
