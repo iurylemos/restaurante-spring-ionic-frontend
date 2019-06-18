@@ -18,18 +18,21 @@ import { API_CONFIG } from '../../config/api.config';
 })
 export class CategoriasPage {
 
-  constructor(public navCtrl: NavController,
-     public navParams: NavParams,
-     public categoriaServico: CategoriaServico) {
-  }
-
-
+  
   //Bucket de imagens
   bucketUrl: string = API_CONFIG.bucketBaseUrl;
 
   //Essa vai ser a lista que vai ser exposta no controlador
   //Para o meu template ler os dados
   items: CategoriaDTO[];
+
+  constructor(
+     public navCtrl: NavController,
+     public navParams: NavParams,
+     public categoriaServico: CategoriaServico) {
+  }
+
+
 
   //Quando a pagina terminar de ser carregada vai ser executada o que tiver aqui dentro
   //No angular para você se increver uma chamada assicrona
@@ -54,10 +57,13 @@ export class CategoriasPage {
       //[] = coleção
       this.items = response;
     },
-    error => {
-      console.log(error);
-    });
+    error => {});
   }
+
+  //Eu tinha um tratamento básico aqui de error
+  //Que imprimia no console
+  //Vou retirar e deixar vazio, para que ele não estoure aqui no Controlador
+  //e agora lá no Interpector vou botar para mostrar o erro no console
 
   //Criando uma função para botar dentro do subscribe
   //Que é a função CALLBACK
