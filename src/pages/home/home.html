@@ -6,11 +6,16 @@
   <form>
     <ion-item>
         <ion-label stacked>Email</ion-label>
-        <ion-input type="text"></ion-input>
+        <!-- Bidding aqui para cada vez que o usuário clicar 
+        Bidding de atributo é [] , e Bidding de Evento () 
+        E dentro do parenteses, utilizamos o ngModel 
+        Que é a diretiva do Angular que faz o bidding com algum dado
+      da minha classe do Controlador -->
+        <ion-input [(ngModel)]="creds.email" name="email" type="text"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Senha</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input [(ngModel)]="creds.senha" name="senha" type="password"></ion-input>
     </ion-item>
     <!-- Parenteses no Angular significa o Bidding 
     Vou fazer com que o clickando no entrar vai lá para a pagina Categorias

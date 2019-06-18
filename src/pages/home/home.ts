@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { MenuController } from 'ionic-angular/components/app/menu-controller';
+import { CredenciaisDTO } from '../../models/credenciais.dto';
 
 /*Esse decotador abaixo que vai contar para minha aplicacao 
 que essa classe ela é uma pagina
@@ -21,6 +22,15 @@ com minhas paginas na forma LazyLoadir
   templateUrl: 'home.html'
 })
 export class HomePage {
+
+  //Objeto do tipo credenciais
+  //Colocando vázio pois vou fazer o bidding desse objeto com os valores do campo
+  //Para realizar a validação do Login
+  creds : CredenciaisDTO = {
+    email: "",
+    senha: ""
+  };
+
 
   constructor(public navCtrl: NavController, public menu: MenuController) {
     //Controlador da view do home.html
@@ -55,9 +65,15 @@ export class HomePage {
     //de um objeto em uma classe, basta declarar o objeto como parametro
     //Do Cosntrutor.
     //vou utilizar o metodo push que é impilhar uma pagina em cima da outra.
-    //Metodo de navegação da Home para CategoriasPage */
+    //Metodo de navegação da Home para CategoriasPage 
+    
+    Testando o envio de dados pelo login, que é quando realiza o click
+    
+
+    */
 
   login() {
+    console.log(this.creds);
     this.navCtrl.push('CategoriasPage');
   }
 
