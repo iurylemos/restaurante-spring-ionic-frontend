@@ -2,11 +2,13 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { CredenciaisDTO } from "../models/credenciais.dto";
 import { API_CONFIG } from "../config/api.config";
+import { LocalUser } from "../models/local_user";
+import { StorageServico } from "./storage.servico";
 
 @Injectable()
 export class AuthServico {
 
-    constructor(public http: HttpClient) {
+    constructor(public http: HttpClient, public storage: StorageServico) {
         //Para fazer a requisição vou ter que importar o httpClient
     }
 
@@ -33,5 +35,25 @@ export class AuthServico {
                 responseType: 'text'
 
             });
+    }
+
+    successfullLogin(authorizationValue : string) {
+        //Retirando o Bearer quando fizer o login e receber o Token
+        //Boto o substring 7, para ele pegar do 7 em diante.
+        let tok = authorizationValue.substring(7);
+        //criar a variavel user que vai valer o token com o valor tok.
+        //que criei acima para valer o Token que está vindo no parametro
+        let user : LocalUser = {
+            token : tok
+        };
+        //Para guar o meu usário no localStorage preciso instanciar
+        //A classe dela no construtor
+        //com isso eu guardo o meu usário no localStorage
+        this.storage.setLocalUser(user);
+    }
+
+    //metodo logout vai ser ir no localStorage e remover o usuário
+    logout() {
+        this.storage.setLocalUser(null);
     }
 }

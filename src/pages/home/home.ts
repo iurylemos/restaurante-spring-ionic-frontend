@@ -86,7 +86,9 @@ export class HomePage {
   login() {
     this.auth.authenticate(this.creds)
     .subscribe(response => {
-      console.log(response.headers.get('Authorization'));
+      //Quando eu fizer o login vai ter que está amazernado lá no localStorage
+      //O meu token!, o metodo successfullLogin é quando deu certo o login
+      this.auth.successfullLogin(response.headers.get('Authorization'));
       this.navCtrl.push('CategoriasPage');
     },
     error => {});
