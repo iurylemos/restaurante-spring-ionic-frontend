@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { MenuController } from 'ionic-angular/components/app/menu-controller';
 import { CredenciaisDTO } from '../../models/credenciais.dto';
+import { AuthServico } from '../../services/auth.servico';
 
 /*Esse decotador abaixo que vai contar para minha aplicacao 
 que essa classe ela é uma pagina
@@ -32,7 +33,10 @@ export class HomePage {
   };
 
 
-  constructor(public navCtrl: NavController, public menu: MenuController) {
+  constructor(
+    public navCtrl: NavController, 
+    public menu: MenuController,
+    public auth: AuthServico) {
     //Controlador da view do home.html
     //O que tiver de argumento no construtor vai ser injetado na classe
 
@@ -69,12 +73,24 @@ export class HomePage {
     
     Testando o envio de dados pelo login, que é quando realiza o click
     
+    Agora no metodo login vou chamar o Authenticate
+    passando o creds como parametro e vou me inscrever com o subscribe
+    se a resposta vier com sucesso, eu vou imprimir no console
+    essa resposta .get('Authorization')
+    Para verificar se estou acessando esse cabeçalho que vai vir com o token para mim
+    Depois vou chamar a pagina de Categorias, ou seja se fizer o login
 
+    ou se der erro eu retorno o corpo vázio
     */
 
   login() {
-    console.log(this.creds);
-    this.navCtrl.push('CategoriasPage');
+    this.auth.authenticate(this.creds)
+    .subscribe(response => {
+      console.log(response.headers.get('Authorization'));
+      this.navCtrl.push('CategoriasPage');
+    },
+    error => {});
+    
   }
 
 }

@@ -9,6 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CategoriaServico } from '../services/domain/categoria.servico';
 import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
+import { AuthServico } from '../services/auth.servico';
 
 @NgModule({
   declarations: [
@@ -28,11 +29,17 @@ import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CategoriaServico,
-    ErrorInterceptorProvider
+    ErrorInterceptorProvider,
+    AuthServico
   ]
 })
 
 /*
+  Declarando o AuthServico lá nos providers se não funciona
+  Agora eu tenho um instancia desse Servico disponível na 
+  minha aplicação como todo.
+
+
   Coloquei aqui a cima o CategoriaServico pois ele pode ser utilizado
   em mais de uma página, pois ele é muito util, ou seja , ele pode servir
   toda aaplicação
