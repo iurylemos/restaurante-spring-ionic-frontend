@@ -25,5 +25,18 @@ export class HomePage {
     //Controlador da view do home.html
 
   }
+  //Metodo login sendo criado
+  /*abrir a pagina de categorias
+    //navegando de uma pagina para outra, utiliza o NavController 
+    //que já está injetado no contrutor
+    //No Ionic e no Angular quando precisamos injetar uma instancia
+    //de um objeto em uma classe, basta declarar o objeto como parametro
+    //Do Cosntrutor.
+    //vou utilizar o metodo push que é impilhar uma pagina em cima da outra.
+    //Metodo de navegação da Home para CategoriasPage */
+
+  login() {
+    this.navCtrl.push('CategoriasPage');
+  }
 
 }

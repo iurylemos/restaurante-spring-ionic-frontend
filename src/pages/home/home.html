@@ -12,10 +12,11 @@
       <ion-label stacked>Senha</ion-label>
       <ion-input type="password"></ion-input>
     </ion-item>
-    <button ion-button block>Entrar</button>
-    <button ion-button block outline>Registrar</button>
-
-
+    <!-- Parenteses no Angular significa o Bidding 
+    Vou fazer com que o clickando no entrar vai lá para a pagina Categorias
+  Quando acontecer o click quero que acontece o metodo login() -->
+    <button ion-button block (click)="login()">Entrar</button>
   </form>
+  <button ion-button block outline>Registrar</button>
 
 </ion-content>
