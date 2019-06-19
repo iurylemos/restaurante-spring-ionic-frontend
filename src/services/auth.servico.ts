@@ -4,9 +4,14 @@ import { CredenciaisDTO } from "../models/credenciais.dto";
 import { API_CONFIG } from "../config/api.config";
 import { LocalUser } from "../models/local_user";
 import { StorageServico } from "./storage.servico";
+import { JwtHelper } from 'angular2-jwt';
 
 @Injectable()
 export class AuthServico {
+
+    //Extraindo um email do meu token
+    //Criando um objeto jwtHelder do tipo JwtHelder
+    jwtHelper: JwtHelper = new JwtHelper();
 
     constructor(public http: HttpClient, public storage: StorageServico) {
         //Para fazer a requisição vou ter que importar o httpClient
@@ -43,8 +48,11 @@ export class AuthServico {
         let tok = authorizationValue.substring(7);
         //criar a variavel user que vai valer o token com o valor tok.
         //que criei acima para valer o Token que está vindo no parametro
+
+        //Qual token? é o tok, e botar o .sub que faz pegar o email
         let user : LocalUser = {
-            token : tok
+            token : tok,
+            email: this.jwtHelper.decodeToken(tok).sub
         };
         //Para guar o meu usário no localStorage preciso instanciar
         //A classe dela no construtor
