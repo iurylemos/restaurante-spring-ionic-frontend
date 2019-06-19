@@ -11,6 +11,7 @@ import { CategoriaServico } from '../services/domain/categoria.servico';
 import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 import { AuthServico } from '../services/auth.servico';
 import { StorageServico } from '../services/storage.servico';
+import { ClienteServico } from '../services/domain/cliente.servico';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { StorageServico } from '../services/storage.servico';
     CategoriaServico,
     ErrorInterceptorProvider,
     AuthServico,
-    StorageServico
+    StorageServico,
+    ClienteServico
   ]
 })
 

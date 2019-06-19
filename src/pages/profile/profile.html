@@ -17,7 +17,19 @@
   <!-- Criando uma interpolação para mostrar o valor do Email
   Ou seja se eu colocar o {{ email }} 
   Dessa forma vai aparecer na pagina o valor do atributo email 
-  que está no controlador -->
-  {{ email }}
+  que está no controlador 
 
+  ION AVATAR QUE VAI MOSTRAR A IMAGEM
+
+  Quando eu coloco o [src] entre colchetes significa que é o Bidding de dados
+  Pode ser o cliente, no campo imageUrl ou pode ser o caminho que eu tenho de imagens
+  para acessar a imagem quando o usuário não tem foto.
+
+  Variavel ? Se não tá valendo nada, não vai dar erro, mas a partir 
+  de que for carregada no navegador, ai sim dar erro.-->
+  <ion-avatar>
+    <img class="circle" [src]="cliente?.imageUrl || 'assets/imgs/avatar-blank.png'">
+  </ion-avatar>
+  <h2 text-center>{{cliente?.nome}}</h2>
+  <p text-center>{{cliente?.email}}</p>
 </ion-content>
