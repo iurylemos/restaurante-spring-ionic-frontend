@@ -48,7 +48,16 @@ export class ProfilePage {
         //Buscar minha imagem do S3
         this.getImageIfExists();
       },
-      error => {});
+      error => {
+        if(error.status == 403) {
+          //se o erro for igual o 403 vou redirecionar o usuário para a page 403
+          this.navCtrl.setRoot('HomePage');
+        }
+      });
+    }else {
+      //Se acontecer algum problema na hora de obter o usuário logado
+      //rediciona para a pagina Principal
+      this.navCtrl.setRoot('HomePage');
     }
   }
 
