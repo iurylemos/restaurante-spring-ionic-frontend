@@ -57,7 +57,18 @@ export class HomePage {
     this.menu.swipeEnable(true);
   }
 
-
+  ionViewDidEnter() {
+    //Copiar o login para cá, e modificar algumas coisas
+    this.auth.refreshToken()
+    .subscribe(response => {
+      //Quando eu fizer o login vai ter que está amazernado lá no localStorage
+      //O meu token!, o metodo successfullLogin é quando deu certo o login
+      this.auth.successfullLogin(response.headers.get('Authorization'));
+      this.navCtrl.push('CategoriasPage');
+    },
+    error => {});
+    
+  }
 
 
 

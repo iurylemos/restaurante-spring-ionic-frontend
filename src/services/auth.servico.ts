@@ -42,6 +42,17 @@ export class AuthServico {
             });
     }
 
+    refreshToken() {
+       
+        return this.http.post(
+            `${API_CONFIG.baseUrl}/auth/refresh_token`, 
+            {},
+            {
+                observe: `response`,
+                responseType: 'text'
+            });
+    }
+
     successfullLogin(authorizationValue : string) {
         //Retirando o Bearer quando fizer o login e receber o Token
         //Boto o substring 7, para ele pegar do 7 em diante.
