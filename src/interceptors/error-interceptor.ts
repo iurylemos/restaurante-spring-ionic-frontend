@@ -6,11 +6,12 @@ import { Injectable } from '@Angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { Observable } from 'rxjs/Rx'; // IMPORTANTE: IMPORT ATUALLIZADO
 import { StorageServico } from '../services/storage.servico';
+import { AlertController } from 'ionic-angular';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
-    constructor(public storage : StorageServico){
+    constructor(public storage : StorageServico, public alertController: AlertController){
 
     }
 
@@ -45,16 +46,24 @@ export class ErrorInterceptor implements HttpInterceptor {
             //tratamento do erro no erroObj.status
             //como pode ser vários tratamentos vou colocar dentro do switch
             switch(errorObj.status) {
+                case 401:
+                this.handle401();
+                break;
+
                 case 403:
                 this.handle403();
                 break;
+
+                //não deu certo nenhum do dois, cai aqui no default
+                default:
+                this.handleDefaultError(errorObj);
             }
 
             return Observable.throw(errorObj);
         }) as any;
 
     }
-    
+
     //tratamento do erro 403
     handle403() {
         //Forçar a limpeza do localStorage
@@ -62,6 +71,34 @@ export class ErrorInterceptor implements HttpInterceptor {
         //se existir vou limpzar
         
         this.storage.setLocalUser(null);
+    }
+
+    handle401() {
+        let alert = this.alertController.create({
+            title: 'Erro 401: Falha de autenticação',
+            message: 'Email ou senha incorretos',
+            enableBackdropDismiss: false,
+            buttons: [
+                {
+                    text: 'Ok'
+                }
+            ]
+        });
+        alert.present();
+    }
+
+    handleDefaultError(errorObj) {
+        let alert = this.alertController.create({
+            title: 'Erro ' + errorObj.status +': ' + errorObj.error,
+            message: errorObj.message,
+            enableBackdropDismiss: false,
+            buttons: [
+                {
+                    text: 'Ok'
+                }
+            ]
+        });
+        alert.present();
     }
 
 
