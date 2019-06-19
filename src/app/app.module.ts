@@ -8,10 +8,12 @@ import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CategoriaServico } from '../services/domain/categoria.servico';
+import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 import { AuthServico } from '../services/auth.servico';
 import { StorageServico } from '../services/storage.servico';
 import { ClienteServico } from '../services/domain/cliente.servico';
+
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { ClienteServico } from '../services/domain/cliente.servico';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CategoriaServico,
+    AuthInterceptorProvider,
     ErrorInterceptorProvider,
     AuthServico,
     StorageServico,

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Rx";
 import { ClienteDTO } from "../../models/clientes.dto";
 import { API_CONFIG } from "../../config/api.config";
@@ -17,13 +17,13 @@ export class ClienteServico {
     //Observable de ClienteDTO
     findByEmail(email: string) : Observable<ClienteDTO> {
         //Cabeçalho que vem o token e colocando na variavel token
-        let token = this.storage.getLocalUser().token;
+        //let token = this.storage.getLocalUser().token;
         //Header que vou passar
         //Preciso instancia um objeto do HttpHeaders
         //Boto o nome do header que é o Authorization
         //Boto o nome do Token que eu peguei aqui em cima.
         //E esse vai ser o cabeçalho que vou mandar para a requisição.
-        let authHeader = new HttpHeaders({'Authorization' : 'Bearer ' + token});
+        //let authHeader = new HttpHeaders({'Authorization' : 'Bearer ' + token});
 
 
 
@@ -32,9 +32,7 @@ export class ClienteServico {
         //Vai ser o endereço básico da minha API / clientes/email?RECEBENDO um value
         //QUe é o email que veio como parametro nesse metodo
         //No segundo argumento eu passo o token (CABEÇALHO) para a requisição
-        return this.http.get<ClienteDTO>(
-            `${API_CONFIG.baseUrl}/clientes/email?value=${email}`,
-            {'headers': authHeader});
+        return this.http.get<ClienteDTO>(`${API_CONFIG.baseUrl}/clientes/email?value=${email}`);
     }
 
     //Buscando a imagem lá no BUCKET do S3
