@@ -100,7 +100,9 @@ export class HomePage {
       //Quando eu fizer o login vai ter que está amazernado lá no localStorage
       //O meu token!, o metodo successfullLogin é quando deu certo o login
       this.auth.successfullLogin(response.headers.get('Authorization'));
-      this.navCtrl.push('CategoriasPage');
+      //Para ficar sem impilhar, não ter aquela setinha, e aparecer o menu.
+      //Tenho que colocar o setRoot
+      this.navCtrl.setRoot('CategoriasPage');
     },
     error => {});
     

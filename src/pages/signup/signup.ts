@@ -63,7 +63,7 @@ export class SignupPage {
 
   ionViewDidLoad() {
     //Aqui dentro vou carregar os estados e me increver para receber a resposta
-    this.estadoServico.findAll().subscribe( response=> {
+    this.estadoServico.findAll().subscribe( response => {
       //Se ocorrer tudo bem, vou amazenar esses estados que eu busquei nos DTO do tipo coleção.
         this.estados = response;
         //Pegar o primeiro elemento dos estados e atribuir ele na lista das cidades
