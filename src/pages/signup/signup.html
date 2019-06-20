@@ -25,10 +25,23 @@
       <ion-label stacked>Nome*</ion-label>
       <ion-input formControlName="nome" type="text"></ion-input>
     </ion-item>
+    <!-- Tags de validação, caso ocorra error -->
+    <!-- Abrir um paragrafo e coloquei uma diretiva do angular 
+    Que é a *ngIf é o IF, dizendo que se alguma coisa for verdade ele mostra o valor invalido
+    Estou testando se o objeto do controlador o formGroup acessando o campo do objeto
+    no caso é o ['nome'] DIRTY = SUJO, ou seja estou testando se esse campo do formulário
+    já foi mexido. 
+    E se o no campo nome só vai dar error, se algum dos validators estourar 
+    Que é justamente a validação de cada campo 
+    Para que a mensagem fique vermelha, eu criei um atributo chamado danger
+    Lá no signup.scss e basta eu utilizar o class="danger" aqui
+    SE O CAMPO DO FORMULÁRIO JÁ FOI MEXIDO E SE DEU ALGUM ERRO DE VALIDATOR NO CAMPO NOME -->
+    <p class="danger" *ngIf="formGroup.controls['nome'].dirty && formGroup.controls['nome'].errors" margin-left>Valor invalido</p>
     <ion-item>
         <ion-label stacked>Email*</ion-label>
         <ion-input formControlName="email" type="text"></ion-input>
-      </ion-item>
+    </ion-item>
+    <p class="danger" *ngIf="formGroup.controls['email'].dirty && formGroup.controls['email'].errors" margin-left>Valor invalido</p>
       <ion-list radio-group formControlName="tipo">
         <ion-list-header>
           Tipo de cliente
@@ -47,18 +60,22 @@
         <ion-label stacked>CPF ou CNPJ</ion-label>
         <ion-input formControlName="cpfOuCnpj" type="text"></ion-input>
       </ion-item>
+      <p class="danger" *ngIf="formGroup.controls['cpfOuCnpj'].dirty && formGroup.controls['cpfOuCnpj'].errors" margin-left>Valor invalido</p>
       <ion-item>
           <ion-label stacked>Senha*</ion-label>
           <ion-input formControlName="senha" type="password"></ion-input>
       </ion-item>
+      <p class="danger" *ngIf="formGroup.controls['senha'].dirty && formGroup.controls['senha'].errors" margin-left>Valor invalido</p>
       <ion-item>
           <ion-label stacked>Longradouro</ion-label>
           <ion-input formControlName="longadouro" type="text"></ion-input>
       </ion-item>
+      <p class="danger" *ngIf="formGroup.controls['longadouro'].dirty && formGroup.controls['longadouro'].errors" margin-left>Valor invalido</p>
       <ion-item>
           <ion-label stacked>Numero*</ion-label>
           <ion-input formControlName="numero" type="text"></ion-input>
       </ion-item>
+      <p class="danger" *ngIf="formGroup.controls['numero'].dirty && formGroup.controls['numero'].errors" margin-left>Valor invalido</p>
       <ion-item>
           <ion-label stacked>Complemento</ion-label>
           <ion-input formControlName="complemento" type="text"></ion-input>
@@ -71,10 +88,12 @@
           <ion-label stacked>CEP*</ion-label>
           <ion-input formControlName="cep" type="text"></ion-input>
       </ion-item>
+      <p class="danger" *ngIf="formGroup.controls['cep'].dirty && formGroup.controls['cep'].errors" margin-left>Valor invalido</p>
       <ion-item>
           <ion-label stacked>Telefone 1</ion-label>
           <ion-input formControlName="telefone1" type="text"></ion-input>
       </ion-item>
+      <p class="danger" *ngIf="formGroup.controls['telefone1'].dirty && formGroup.controls['telefone1'].errors" margin-left>Valor invalido</p>
       <ion-item>
           <ion-label stacked>Telefone 2</ion-label>
           <ion-input formControlName="telefone2" type="text"></ion-input>
@@ -120,7 +139,12 @@
             <ion-option *ngFor="let cidade of cidades" [value]="cidade.id" >{{ cidade.nome }}</ion-option>
         </ion-select>
      </ion-item>
-     <button ion-button block type="submit">Criar conta</button> 
+     <!-- Bloquear o formulário se ainda não estiver válido 
+    EX: Escolheu o estado mas não escolheu a cidade
+    Vou atribuir o BIDDING [disabled] passando o formGroup.invalid
+    ou seja o botão vai estar desabilitado caso o formGroup for invalido
+    Ou seja se qualquer uma das validações falhar -->
+     <button ion-button block type="submit" [disabled]="formGroup.invalid">Criar conta</button> 
   </form>
 
 </ion-content>
