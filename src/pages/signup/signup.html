@@ -85,16 +85,39 @@
       </ion-item>
      <ion-item>
       <ion-label stacked>Estado*</ion-label>
-      <ion-select formControlName="estadoId">
-        <ion-option value="1">Minas Gerais</ion-option>
-        <ion-option value="2">São Paulo</ion-option>
+      <!-- Esse ionChange faz com que toda vez que o select abaixo for
+      chamado, eu vou chamar o metodo updateCidades()
+      que chama lá no backend para buscar as cidades do estado 
+     que estiver selecionado -->
+      <ion-select formControlName="estadoId" (ionChange)="updateCidades()">
+        <!-- Povoando dinamicamente de acordo com o banco.
+        coloco a diretiva *ngFor = 
+        let estado da lista de estados (PUXANDO A VARIAVEL ESTADO) 
+        Pegar a primeira referência que é o primeiro estado que está na lista 
+        AGORA VOU DEFINIR QUEM É O VALOR DO OPTION 
+        UTILIZANDO O BIDDING  DE ATRIBUTO COM O COLCHETES [value]
+        E definir que o valor desse cara vai ser o estado.id
+        E PARA FORÇAR O PRIMEIRO ESTADO A SER SELECIONADO LISTA
+        VOU COLOCAR O [selected] = F que no caso é o primeiro estado seja selecionado na lista 
+          
+       
+
+        O estado.ID vai ser o valor do option
+         E O QUE VAI APARECER NA TELA VAI SER O NOME
+        E ASSIM EU COLOCO DENTRO DO OPTIONS
+      
+      -->
+        <ion-option *ngFor="let estado of estados; firts as f" [value]="estado.id" [selected]="f" >{{ estado.nome }}</ion-option>
+        
       </ion-select>
      </ion-item>
      <ion-item>
         <ion-label stacked>Cidade*</ion-label>
         <ion-select formControlName="cidadeId">
-          <ion-option value="1">Urberlândia</ion-option>
-          <ion-option value="2">Campinas</ion-option>
+          <!-- Aqui eu não preciso do FIRTS, pois não vou fazer questão
+          Que ela esteja selecionada primeira quando eu mudar de estado
+          E apago tbm o select -->
+            <ion-option *ngFor="let cidade of cidades" [value]="cidade.id" >{{ cidade.nome }}</ion-option>
         </ion-select>
      </ion-item>
      <button ion-button block type="submit">Criar conta</button> 
